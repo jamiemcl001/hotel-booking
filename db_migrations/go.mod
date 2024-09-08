@@ -1,4 +1,4 @@
-module github.com/jamiemcl001/hotel-booking/migrations
+module github.com/jamiemcl001/hotel-booking/db_migrations
 
 go 1.22.3
 
