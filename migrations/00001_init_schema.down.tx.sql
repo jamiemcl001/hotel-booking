@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS customers, addresses, organisations, hotels, rooms, payment_methods, daily_rate_increases, bookings, reviews;
