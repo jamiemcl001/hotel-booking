@@ -1,0 +1,24 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Output files
+*.out
+*.test
+
+# Go specific
+*.exe
+*.test
+*.prof
+
+# Dependency directories
+/vendor/
+
+# IDE specific
+.idea/
+.vscode/
+
+/hotelsdb.sqlite3
