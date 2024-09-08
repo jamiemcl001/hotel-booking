@@ -1,27 +1,28 @@
 package main
 
 import (
-	_ "github.com/mattn/go-sqlite3"
+	"database/sql"
+	"log"
 
-	"github.com/jamiemcl001/hotel-booking/db"
+	_ "github.com/mattn/go-sqlite3"
 )
 
+func setupDb() *sql.DB {
+	dbConn, err := sql.Open("sqlite3", "hotelsdb.sqlite3")
+	if err != nil {
+		log.Fatalf("Failed to initialise the DB: %s", err.Error())
+	}
+
+	if err = dbConn.Ping(); err != nil {
+		log.Fatalf("Failed to connect to DB: %s", err.Error())
+	}
+
+	return dbConn
+}
+
 func run() {
-	db_conn, err := db.New("hotelsdb.sqlite3")
-	if err != nil {
-		panic(err)
-	}
-
-	m := db.NewMigrator(
-		db.WithDB(db_conn),
-		db.WithDBName("hotelsdb"),
-	)
-	err = m.RunMigrations()
-	if err != nil {
-		panic(err)
-	}
-
-	defer db_conn.Close()
+	db := setupDb()
+	defer db.Close()
 }
 
 func main() {

@@ -1,4 +1,4 @@
-package db
+package main
 
 import (
 	"database/sql"
@@ -24,19 +24,19 @@ var (
 	ErrFailedToRunMigrations      = errors.New("failed to run migrations")
 )
 
-func WithDB(db *sql.DB) MigratorOptFn {
+func withDB(db *sql.DB) MigratorOptFn {
 	return func(m *Migrator) {
 		m.db = db
 	}
 }
 
-func WithDBName(name string) MigratorOptFn {
+func withDBName(name string) MigratorOptFn {
 	return func(m *Migrator) {
 		m.db_name = name
 	}
 }
 
-func NewMigrator(opts ...MigratorOptFn) *Migrator {
+func newMigrator(opts ...MigratorOptFn) *Migrator {
 	m := new(Migrator)
 	for _, opt := range opts {
 		opt(m)
